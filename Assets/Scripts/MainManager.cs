@@ -70,7 +70,13 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
+        StoreScore();
         m_GameOver = true;
         GameOverText.SetActive(true);
+    }
+
+    public void StoreScore()
+    {
+        // store the highest score
     }
 }

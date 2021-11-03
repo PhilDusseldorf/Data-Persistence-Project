@@ -7,6 +7,7 @@ public class BetweenScenes : MonoBehaviour
     public static BetweenScenes Instance;
 
     public string playerName;
+    public int bestScore;
 
     private void Awake()
     {
