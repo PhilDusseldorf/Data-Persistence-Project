@@ -1,27 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameUI : MonoBehaviour
 {
-    private TMP_InputField inputField;
-    private string playerName;
+    private InputField inputField;
+    private string playerName = "";
+    public TextMeshProUGUI textLabel;
 
-    public void Start()
+    private void Start()
     {
-        inputField = GameObject.Find("InputField (TMP)").GetComponent<TMP_InputField>();
-        Debug.Log(inputField);
+        inputField = GameObject.Find("InputField").GetComponent<InputField>();
+        try 
+        {
+            playerName = BetweenScenes.Instance.playerName;
+        }
+        finally
+        {
+            inputField.text = playerName;
+        }
     }
 
-    public void getPlayerName()
-    {
-        playerName = inputField.text;
-    }
 
     public void startGame()
     {
         // at this point it only checks if the input field works
-        Debug.Log("Player Name: " + playerName);
+        playerName = inputField.text;
+        if (playerName != "")
+        {
+            // save the inserted name into the between scene storage
+            BetweenScenes.Instance.playerName = playerName;
+            // start the game
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            textLabel.text = "Name needed!!!";
+
+        }
     }
+
+
 }
