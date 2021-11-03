@@ -10,6 +10,7 @@ public class GameUI : MonoBehaviour
     private InputField inputField;
     private string playerName = "";
     public TextMeshProUGUI textLabel;
+    public TextMeshProUGUI textHighscore;
 
     private void Start()
     {
@@ -22,6 +23,7 @@ public class GameUI : MonoBehaviour
         {
             inputField.text = playerName;
         }
+        
     }
 
 
