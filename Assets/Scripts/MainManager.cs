@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class MainManager : MonoBehaviour
     public int LineCount = 6;
     public Rigidbody Ball;
 
+    public TextMeshProUGUI textHighscore;
     public Text ScoreText;
     public GameObject GameOverText;
     
@@ -36,6 +38,7 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+        textHighscore.text = Highscore.Instance.PresentHighscore();
     }
 
     private void Update()
@@ -71,6 +74,8 @@ public class MainManager : MonoBehaviour
     public void GameOver()
     {
         StoreScore();
+        textHighscore.text = Highscore.Instance.PresentHighscore();
+        Highscore.Instance.SaveHighscore();
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
@@ -78,5 +83,11 @@ public class MainManager : MonoBehaviour
     public void StoreScore()
     {
         // store the highest score
+        if (m_Points > Highscore.Instance.highScore)
+        {
+            Highscore.Instance.NewHighscore(BetweenScenes.Instance.playerName, m_Points);
+        }
     }
+
+
 }
