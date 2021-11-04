@@ -47,13 +47,21 @@ public class Highscore : MonoBehaviour
 
     }
 
-    public void SaveHighscore()
+    public void SaveHighscore(bool reset)
     {
         // create a new save object
         SaveData data = new SaveData();
         // store data in object
-        data.savedPlayer = bestPlayer;
-        data.savedScore = highScore;
+        if (reset)
+        {
+            data.savedPlayer = "";
+            data.savedScore = 0;
+        } 
+        else 
+        {
+            data.savedPlayer = bestPlayer;
+            data.savedScore = highScore;
+        }
         // create json string element
         string json = JsonUtility.ToJson(data);
         // write the string element into highscore.json

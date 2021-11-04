@@ -33,6 +33,13 @@ public class GameUI : MonoBehaviour
         textHighscore.text = Highscore.Instance.PresentHighscore();
     }
 
+    public void resetHighscore()
+    {
+        Highscore.Instance.SaveHighscore(true);
+        Highscore.Instance.LoadHighscore();
+        textHighscore.text = Highscore.Instance.PresentHighscore();
+    }
+
 
     public void startGame()
     {

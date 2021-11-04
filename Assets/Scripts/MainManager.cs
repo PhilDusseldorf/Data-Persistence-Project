@@ -75,7 +75,7 @@ public class MainManager : MonoBehaviour
     {
         StoreScore();
         textHighscore.text = Highscore.Instance.PresentHighscore();
-        Highscore.Instance.SaveHighscore();
+        Highscore.Instance.SaveHighscore(false);
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
